@@ -19,12 +19,27 @@ public class KeyIndexedSort {
 
         // Student TODO:
         // 1. Compute frequency counts
-       
+        for (int i = 0; i < n; i++) {
+            int freq = charAt(a[i], d);
+            count[freq + 2] += 1;
+        }
+
         // 2. Transform counts to indices
-       
+        for (int r = 0; r < R + 1; r++) {
+            count[r + 1] += count[r];
+        }
+
         // 3. Distribute to auxiliary array
-        
+        for (int i = 0; i < n; i++) {
+            int freq = charAt(a[i], d);
+            int idx = count[freq + 1]++;
+            aux[idx] = a[i];
+        }
+
         // 4. Copy back to original array
+        for (int i = 0; i < n; i++) {
+            a[i] = aux[i];
+        }
 
 
     }
